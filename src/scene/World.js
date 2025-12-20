@@ -46,8 +46,14 @@ export class World {
         // Post Processing
         this.postProcessing = new PostProcessing(this.renderer, this.scene, this.camera);
 
-        // Resize Event
+        // Interaction
+        this.raycaster = new THREE.Raycaster();
+        this.mouse = new THREE.Vector2();
+
+        // Event Listeners
         window.addEventListener('resize', () => this.onResize());
+        window.addEventListener('click', (e) => this.onClick(e));
+        document.getElementById('close-btn').addEventListener('click', () => this.hideDetail());
 
         // Start Loop
         this.render();
@@ -125,6 +131,13 @@ export class World {
         const dt = this.clock.getDelta();
         this.updateControls();
 
+        // Update Raycaster
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+
+        // Hover effect? Not strictly needed for now, but good for feedback
+        // const intersects = this.raycaster.intersectObject(this.tombstones.mesh);
+        // if (intersects.length > 0) { ... cursor pointer ... }
+
         if (this.postProcessing) {
             this.postProcessing.update(dt);
         } else {
@@ -132,5 +145,38 @@ export class World {
         }
 
         requestAnimationFrame(() => this.render());
+    }
+
+    onClick(event) {
+        if (event.target.closest('#detail-overlay')) return; // Ignore clicks on overlay
+
+        // Calculate mouse position in normalized device coordinates
+        this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        this.raycaster.setFromCamera(this.mouse, this.camera);
+        const intersects = this.raycaster.intersectObject(this.tombstones.mesh);
+
+        if (intersects.length > 0) {
+            const instanceId = intersects[0].instanceId;
+            this.showDetail(instanceId);
+        } else {
+            this.hideDetail();
+        }
+    }
+
+    showDetail(id) {
+        const overlay = document.getElementById('detail-overlay');
+        const title = document.getElementById('detail-title');
+        const content = document.getElementById('detail-content');
+
+        title.innerText = `Tombstone #${id}`;
+        content.innerText = `Here lies a forgotten memory, etched in digital stone. Index: ${id}`;
+
+        overlay.classList.remove('hidden');
+    }
+
+    hideDetail() {
+        document.getElementById('detail-overlay').classList.add('hidden');
     }
 }

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Immersive Ink Cemetery</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <div id="ui">
-        <h1>Ink Cemetery</h1>
-        <p>Scroll to Clarify . WASD to Move</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Immersive Ink Cemetery</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="ui">
+    <h1>Ink Cemetery</h1>
+    <p>Scroll to Clarify . WASD to Move</p>
+    <div id="detail-overlay" class="hidden">
+      <button id="close-btn">×</button>
+      <h2 id="detail-title">Tombstone Title</h2>
+      <p id="detail-content">Details about this memory...</p>
     </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
