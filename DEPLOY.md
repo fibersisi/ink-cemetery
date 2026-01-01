@@ -27,7 +27,7 @@
 1.  **打开项目中的 `vite.config.js` 文件**。
 2.  找到 `base: '/your-repo-name/'` 这一行。
 3.  将 `'your-repo-name'` 修改为您在 GitHub 上创建的仓库名称。
-    *   例如：如果您的仓库是 `https://github.com/john/ink-cemetery`，则改为 `base: '/ink-cemetery/'`。
+    *   例如：如果您的仓库是 `https://github.com/fibersisi/ink-cemetery`，则改为 `base: '/ink-cemetery/'`。
 
 ### 第二步：创建仓库并推送代码
 1.  在 GitHub 上创建一个新仓库（不要勾选 Initialize with README）。
