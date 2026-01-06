@@ -33,7 +33,7 @@
 1.  在 GitHub 上创建一个新仓库（不要勾选 Initialize with README）。
 2.  在 VS Code 终端中运行以下命令关联远程仓库（替换 URL）：
     ```bash
-    git remote add origin https://github.com/您的用户名/您的仓库名.git
+    git remote add origin https://github.com/fibersisi/ink-cemetery.git
     git branch -M main
     git add .
     git commit -m "Initial commit"
@@ -50,6 +50,8 @@ npm run deploy
 1.  重新构建项目（`npm run build`）。
 2.  将 `dist` 文件夹的内容推送到 GitHub 的 `gh-pages` 分支。
 3.  您的网站将在 `https://您的用户名.github.io/您的仓库名/` 上线（可能需要几分钟生效）。
+
+https://fibersisi.github.io/ink-cemetery/
 
 ---
 
